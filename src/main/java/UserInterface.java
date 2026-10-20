@@ -20,8 +20,8 @@ public class UserInterface {
                 case 1 -> addMovie();
                 case 2 -> showAllMovies();
                 case 3 -> searchMovies();
-//                case 4 -> editMovie();
-//                case 5 -> deleteMovie();
+                case 4 -> editMovies();
+                case 5 -> deleteMovies();
                 case 0 -> isRunning = false;
                 default -> System.out.println("Unknown choice" + choice);
             }
@@ -66,5 +66,104 @@ public class UserInterface {
                 System.out.println(movie);
             }
         }
+
+
     }
-}
+    private void editMovies(){
+        System.out.println("search for title: ");
+        String searchText = scanner.nextLine();
+        ArrayList<Movie> found = controller.searchMovies(searchText);
+        if (found.isEmpty()) {
+            System.out.println("Movie was not found");
+        } else {
+            for (Movie movie : found) {
+                System.out.println(movie);
+            }
+        }
+
+        for(int i= 0; i < found.size(); i++){
+            System.out.println((i + 1) + ". " + found.get(i).getTitle());
+        }
+        System.out.println("Enter a number: ");
+        int number = scanner.nextInt();
+        scanner.nextLine();
+
+        if (number < 1 || number > found.size()){
+            System.out.println("Invalid choice");
+            return;
+        }
+        Movie movie = found.get(number - 1);
+
+        System.out.print("new Title: (currently " + movie.getTitle() + "): ");
+        String title = scanner.nextLine();
+        System.out.print("new Director: (currently " + movie.getDirector() + "): ");
+        String director = scanner.nextLine();
+        System.out.print("new Year created: (currently " + movie.getYearCreated() + "): ");
+        int yearCreated = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Is movie in color (True or false): (currently" + movie.isInColor() + "): ");
+        boolean isColor = scanner.nextBoolean();
+        System.out.print("new Length of movie in minutes: (currently " + movie.getLengthInMinutes() + "): ");
+        int lengthInMinutes = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("new Genre: currently " + movie.getGenre() + "): ");
+        String genre = scanner.nextLine();
+
+        boolean success = controller.editMovie(movie, title, director, yearCreated, isColor, lengthInMinutes, genre);
+
+        if(success) {
+            System.out.println("Movie information updated");
+        }else{
+            System.out.println("Movie information could not be updated");
+        }
+
+    }
+    private void deleteMovies(){
+        System.out.println("search for title: ");
+        String searchText = scanner.nextLine();
+        ArrayList<Movie> found = controller.searchMovies(searchText);
+        if (found.isEmpty()) {
+            System.out.println("Movie was not found");
+        } else {
+            for (Movie movie : found) {
+                System.out.println(movie);
+            }
+        }
+
+        for(int i= 0; i < found.size(); i++){
+            System.out.println((i + 1) + ". " + found.get(i).getTitle());
+        }
+        System.out.println("Enter a number: ");
+        int number = scanner.nextInt();
+        scanner.nextLine();
+
+        if (number < 1 || number > found.size()){
+            System.out.println("Invalid choice");
+            return;
+        }
+        Movie movie = found.get(number - 1);
+
+        System.out.println("You are about to delete " + movie.getTitle() + "\"" +
+                "Are you sure? Decision is FINAL! \" " +
+                "Yes/No"); //Ændre til yes/no senere
+        String answer = scanner.nextLine();
+        if(!answer.equalsIgnoreCase("Yes")){
+            System.out.println("Delete cancelled.");
+            return;
+        }
+        if(controller.deleteMovie(movie)){
+            System.out.println("Movie deleted.");
+        }else{
+            System.out.println("Could not delete the movie");
+        }
+
+    }
+
+
+
+
+
+    }
+
+
+
