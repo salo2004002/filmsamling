@@ -4,12 +4,13 @@ public class MovieCollection {
 
     private ArrayList<Movie> movies;
 
+
     public MovieCollection() {
         movies = new ArrayList<>();
     }
 
-    public void addMovie(String title, String director, int yearCreated, boolean inColor,
-                         int lengthInMinutes, String genre) {
+    public void addMovie(String title, String director, int yearCreated, boolean inColor, int lengthInMinutes, String genre) {
+
 
     }
 

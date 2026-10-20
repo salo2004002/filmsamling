@@ -11,6 +11,23 @@ public class UserInterface {
 
         boolean isRunning = true;
         System.out.println("Welcome to the film archive");
-        System.out.println("1. Opret en film\n" + "2. Vis alle film\n" + "3. Søg efter film\n" + "4. Redigér en film\n" + "5. Slet en film\n" + "0. Afslut");
+
+        while (isRunning) {
+            //Meny
+            System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "0. Strop");
+            System.out.println("Enter number:\n>");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice){
+                case 1 -> createMovie();
+                case 2 -> showAllMovies();
+                case 3 -> searchMovies();
+                case 4 -> editMovie();
+                case 5 -> deleteMovie();
+                case 0 -> isRunning = false;
+                default -> System.out.println("Unknown choice" + choice);
+            }
+
+        }
     }
 }
