@@ -16,10 +16,10 @@ public class UserInterface {
             System.out.print("Enter number:\n> ");
             int choice = scanner.nextInt();
             scanner.nextLine();
-            switch (choice){
+            switch (choice) {
                 case 1 -> addMovie();
                 case 2 -> showAllMovies();
-//                case 3 -> searchMovies();
+                case 3 -> searchMovies();
 //                case 4 -> editMovie();
 //                case 5 -> deleteMovie();
                 case 0 -> isRunning = false;
@@ -28,7 +28,8 @@ public class UserInterface {
         }
 
     }
-    private void addMovie(){
+
+    private void addMovie() {
         System.out.print("Title: ");
         String title = scanner.nextLine();
         System.out.print("Director: ");
@@ -43,14 +44,27 @@ public class UserInterface {
         scanner.nextLine();
         System.out.print("Genre: ");
         String genre = scanner.nextLine();
-        controller.addMovie(title , director,yearCreated, isColor, lengthInMinutes, genre);
+        controller.addMovie(title, director, yearCreated, isColor, lengthInMinutes, genre);
     }
-    private void showAllMovies(){
+
+    private void showAllMovies() {
         ArrayList<Movie> list = controller.getMovies();
-        for(Movie movie : list){
+        for (Movie movie : list) {
             System.out.print(movie.toString());
         }
 
     }
 
+    private void searchMovies() {
+        System.out.print("search for title: ");
+        String searchText = scanner.nextLine();
+        ArrayList<Movie> found = controller.searchMovies(searchText);
+        if (found.isEmpty()) {
+            System.out.println("Movie was not found");
+        } else {
+            for (Movie movie : found) {
+                System.out.println(movie);
+            }
+        }
+    }
 }
