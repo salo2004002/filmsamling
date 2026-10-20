@@ -10,27 +10,27 @@ public class MovieCollection {
 
     public void addMovie(String title, String director, int yearCreated, boolean inColor,
                          int lengthInMinutes, String genre) {
-        // TODO US1
+
     }
 
     public ArrayList<Movie> getMovies() {
-        return null;   // TODO US3
+        return null;
     }
 
     public int getNumberOfMovies() {
-        return 0;      // TODO
+        return 0;
     }
 
     public ArrayList<Movie> searchMovies(String searchText) {
-        return null;   // TODO US4
+        return null;
     }
 
     public boolean editMovie(Movie movie, String title, String director, int yearCreated,
                              boolean inColor, int lengthInMinutes, String genre) {
-        return false;  // TODO US5
+        return false;
     }
 
     public boolean deleteMovie(Movie movie) {
-        return false;  // TODO US6
+        return false;
     }
 }
