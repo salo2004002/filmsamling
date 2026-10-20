@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -12,7 +13,7 @@ public class UserInterface {
         while (isRunning) {
             //Meny
             System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "0. Strop");
-            System.out.println("Enter number:\n>");
+            System.out.print("Enter number:\n> ");
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice){
@@ -24,25 +25,32 @@ public class UserInterface {
                 case 0 -> isRunning = false;
                 default -> System.out.println("Unknown choice" + choice);
             }
-            scanner.close();
         }
 
     }
     private void addMovie(){
-        System.out.println("Title: ");
+        System.out.print("Title: ");
         String title = scanner.nextLine();
-        System.out.println("Director: ");
-        String directior = scanner.nextLine();
-        System.out.println("Year cerated: ");
+        System.out.print("Director: ");
+        String director = scanner.nextLine();
+        System.out.print("Year cerated: ");
         int yearCreated = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Is movie in color (True or false): ");
+        System.out.print("Is movie in color (True or false): ");
         boolean isColor = scanner.nextBoolean();
-        System.out.println("Length of movie in minutes: ");
+        System.out.print("Length of movie in minutes: ");
         int lengthInMinutes = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Genre: ");
+        System.out.print("Genre: ");
         String genre = scanner.nextLine();
-        controller.addMovie(title , directior,yearCreated, isColor, lengthInMinutes, genre);
+        controller.addMovie(title , director,yearCreated, isColor, lengthInMinutes, genre);
     }
+    private void showAllMovies(){
+        ArrayList<Movie> list = controller.getMovies();
+        for(Movie movie : list){
+            System.out.print(movie.toString());
+        }
+
+    }
+
 }
