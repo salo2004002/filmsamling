@@ -2,13 +2,10 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    Scanner scanner = new Scanner(System.in);
+    Controller controller = new Controller();
+
     public void startProgram() {
-
-
-        Scanner scanner = new Scanner(System.in);
-        Controller controller = new Controller();
-
-
         boolean isRunning = true;
         System.out.println("Welcome to the film archive");
 
@@ -19,7 +16,7 @@ public class UserInterface {
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice){
-                case 1 -> createMovie();
+                case 1 -> addMovie();
                 case 2 -> showAllMovies();
                 case 3 -> searchMovies();
                 case 4 -> editMovie();
