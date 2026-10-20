@@ -4,22 +4,23 @@ public class MovieCollection {
 
     private ArrayList<Movie> movies;
 
-
     public MovieCollection() {
         movies = new ArrayList<>();
     }
 
-    public void addMovie(String title, String director, int yearCreated, boolean inColor, int lengthInMinutes, String genre) {
 
-
+    public void addMovie(String title, String director, int yearCreated, boolean inColor,
+                         int lengthInMinutes, String genre) {
+        Movie movie = new Movie(title, director, yearCreated, inColor, lengthInMinutes, genre);
+        movies.add(movie);
     }
 
     public ArrayList<Movie> getMovies() {
-        return null;
+        return movies;
     }
 
     public int getNumberOfMovies() {
-        return 0;
+        return movies.size();
     }
 
     public ArrayList<Movie> searchMovies(String searchText) {
