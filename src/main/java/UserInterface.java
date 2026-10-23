@@ -145,7 +145,16 @@ public class UserInterface {
             System.out.println((i + 1) + ". " + found.get(i).getTitle());
         }
         System.out.println("Enter a number: ");
-        int number = scanner.nextInt();
+        int number = 0;
+        boolean validInput = false;
+        while (!validInput){
+            try{
+                number = Integer.parseInt(scanner.nextLine());
+                validInput = true;
+            } catch (NumberFormatException a){
+                System.out.println("Invalid input, please enter a number: ");
+            }
+        }
         scanner.nextLine();
 
         if (number < 1 || number > found.size()){
