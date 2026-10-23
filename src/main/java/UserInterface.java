@@ -38,7 +38,12 @@ public class UserInterface {
         int yearCreated = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Is movie in color (True or false): ");
-        boolean isColor = scanner.nextBoolean();
+        String input = scanner.nextLine();
+        while(!input.equalsIgnoreCase("true") && !input.equalsIgnoreCase("false")){
+            System.out.print("Invalid input, please write true or false: ");
+            input = scanner.nextLine();
+        }
+        boolean isColor = input.equalsIgnoreCase("true");
         System.out.print("Length of movie in minutes: ");
         int lengthInMinutes = scanner.nextInt();
         scanner.nextLine();
@@ -63,7 +68,7 @@ public class UserInterface {
             System.out.println("Movie was not found");
         } else {
             for (Movie movie : found) {
-                System.out.println(movie);
+                System.out.print("- " + movie);
             }
         }
 
@@ -101,8 +106,14 @@ public class UserInterface {
         System.out.print("new Year created: (currently " + movie.getYearCreated() + "): ");
         int yearCreated = scanner.nextInt();
         scanner.nextLine();
+
         System.out.print("Is movie in color (True or false): (currently" + movie.isInColor() + "): ");
-        boolean isColor = scanner.nextBoolean();
+        String input = scanner.nextLine();
+        while(!input.equalsIgnoreCase("true") && !input.equalsIgnoreCase("false")){
+            System.out.print("Invalid input, please write true or false: ");
+            input = scanner.nextLine();
+        }
+        boolean isColor = input.equalsIgnoreCase("true");
         System.out.print("new Length of movie in minutes: (currently " + movie.getLengthInMinutes() + "): ");
         int lengthInMinutes = scanner.nextInt();
         scanner.nextLine();
