@@ -64,6 +64,17 @@ class MovieCollectionTest {
         assertFalse(wasDelited);
         assertEquals(3, collection.getNumberOfMovies());
     }
+    @Test
+    void editMovie(){
+        ArrayList<Movie> found = collection.searchMovies("Casablanca");
+        Movie movieToEdit = found.get(0);
+
+       boolean wasEdited = collection.editMovie(movieToEdit, "The Casablanca", "SIv", 1994, false, 98, "Romantic");
+
+       assertTrue(wasEdited);
+       assertEquals("The Casablanca", movieToEdit.getTitle());
+       assertEquals("SIv", movieToEdit.getDirector());
+    }
 
 
 
