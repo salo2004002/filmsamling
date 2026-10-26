@@ -12,7 +12,7 @@ public class UserInterface {
 
         while (isRunning) {
             //Meny
-            System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "0. Strop");
+            System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "0. Stop");
             System.out.print("Enter number:\n> ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -37,19 +37,24 @@ public class UserInterface {
         System.out.print("Year cerated: ");
         int yearCreated = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Is movie in color (True or false): ");
+        System.out.print("Is movie in color (Yes or No): ");
         String input = scanner.nextLine();
-        while(!input.equalsIgnoreCase("true") && !input.equalsIgnoreCase("false")){
-            System.out.print("Invalid input, please write true or false: ");
+        while(!input.equalsIgnoreCase("Yes") && !input.equalsIgnoreCase("No")){
+            System.out.print("Invalid input, please write Yes or No: ");
             input = scanner.nextLine();
         }
-        boolean isColor = input.equalsIgnoreCase("true");
+        boolean isColor = input.equalsIgnoreCase("Yes");
         System.out.print("Length of movie in minutes: ");
         int lengthInMinutes = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Genre: ");
         String genre = scanner.nextLine();
         controller.addMovie(title, director, yearCreated, isColor, lengthInMinutes, genre);
+
+        String frame = "-".repeat(title.length()+20);
+        System.out.println("\n" + frame);
+        System.out.println(title +" added to collection");
+        System.out.println(frame + "\n");
     }
 
     private void showAllMovies() {
@@ -131,6 +136,7 @@ public class UserInterface {
 
         if(success) {
             System.out.println("Movie information updated");
+                System.out.print(movie);
         }else{
             System.out.println("Movie information could not be updated");
         }

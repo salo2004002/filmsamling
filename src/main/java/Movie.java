@@ -54,7 +54,7 @@ public class Movie {
         this.genre = genre;
     }
     public String toString() {
-        return getTitle() + "\n" + getDirector()+ "\n" + getYearCreated()+ "\n" + isInColor()+ "\n" + getLengthInMinutes()+ "\n" + getGenre();
+        return getTitle() + "\n" + getDirector()+ "\n" + getYearCreated()+ "\n" + isInColor()+ " " + getLengthInMinutes()+ " " + getGenre();
     }
 }
 
