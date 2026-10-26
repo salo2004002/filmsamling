@@ -1,7 +1,8 @@
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.format.DateTimeFormatter;
+
 public class Movie {
+
 
     private String title;
     private String director;
@@ -11,6 +12,7 @@ public class Movie {
     private String genre;
     private LocalDate lastWatched;
 
+
     public Movie(String title, String director, int yearCreated, boolean inColor,
                  int lengthInMinutes, String genre) {
         this.title = title;
@@ -19,6 +21,8 @@ public class Movie {
         this.inColor = inColor;
         this.lengthInMinutes = lengthInMinutes;
         this.genre = genre;
+        this.lastWatched = null;
+
     }
     public String getTitle(){
         return title;
@@ -60,18 +64,19 @@ public class Movie {
     public String toString() {
         return getTitle() + "\n" + getDirector()+ "\n" + getYearCreated()+ "\n" + isInColor()+ " " + getLengthInMinutes()+ " " + getGenre();
     }
-    public boolean hasBeenWatched(){
-        return lastWatched != null;
-    }
-    public void markAsWatched (LocalDate date){
-        lastWatched = date;
-    }
-    public long getDaysSinceWatched(LocalDate today){
-        return ChronoUnit.DAYS.between(lastWatched, today);
-    }
 
     public LocalDate getLastWatched() {
         return lastWatched;
+    }
+
+    public boolean hasBeenWatched() {
+        return lastWatched != null;
+    }
+    public void markAsWatched(LocalDate date) {
+        lastWatched = date;
+    }
+    public long getDaysSinceWatched(LocalDate today) {
+        return ChronoUnit.DAYS.between(lastWatched, today);
     }
 }
 

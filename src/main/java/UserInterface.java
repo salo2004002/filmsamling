@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class UserInterface {
 
+    private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     Scanner scanner = new Scanner(System.in);
     Controller controller = new Controller();
 
@@ -12,7 +15,7 @@ public class UserInterface {
 
         while (isRunning) {
             //Meny
-            System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "0. Stop");
+            System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "6. Mark a film as watched\n" +"7. Find film, you haven't seen in a while\n"+ "0. Stop\n");
             System.out.print("Enter number:\n> ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -22,6 +25,8 @@ public class UserInterface {
                 case 3 -> searchMovies();
                 case 4 -> editMovies();
                 case 5 -> deleteMovies();
+                case 6 -> markAsWatched();
+                case 7 -> getMoviesNotWatchedForDays();
                 case 0 -> isRunning = false;
                 default -> System.out.println("Unknown choice" + choice);
             }
@@ -189,12 +194,67 @@ public class UserInterface {
         }
 
     }
+    private void markAsWatched(){
+        System.out.println("search for title: ");
+        String searchText = scanner.nextLine();
+        ArrayList<Movie> found = controller.searchMovies(searchText);
+        if (found.isEmpty()) {
+            System.out.println("Movie was not found");
+        } else {
+            for (Movie movie : found) {
+                System.out.println(movie);
+            }
+        }
 
+        for(int i= 0; i < found.size(); i++){
+            System.out.println((i + 1) + ". " + found.get(i).getTitle());
+        }
+        System.out.println("Enter a number: ");
+        int number = 0;
+        boolean validInput = false;
+        while (!validInput){
+            try{
+                number = Integer.parseInt(scanner.nextLine());
+                validInput = true;
+            } catch (NumberFormatException a){
+                System.out.println("Invalid input, please enter a number: ");
+            }
+        }
+        if (number < 1 || number > found.size()){
+            System.out.println("Invalid choice");
+            return;
+        }
+        Movie movie = found.get(number - 1);
 
-
-
+        controller.markAsWatched(movie);
+        System.out.println("\n"+movie + " has been marked as watched\n");
 
     }
+
+    private void getMoviesNotWatchedForDays(){
+        System.out.print("How many days? ");
+        int days = scanner.nextInt();
+        scanner.nextLine();
+
+        ArrayList<Movie> result = controller.getMoviesNotWatchedForDays(days);
+
+        if (result.isEmpty()) {
+            System.out.println("Film not found");
+        } else {
+            for (Movie movie : result) {
+                System.out.println(movie);
+                if (movie.hasBeenWatched()) {
+                    String date = movie.getLastWatched().format(dateFormat);
+                    long daysSince = movie.getDaysSinceWatched(LocalDate.now());
+                    System.out.println("Last seen: " + date + " ( " + daysSince + " days ago)");
+                } else {
+                    System.out.println("Last seen: Never");
+                }
+                System.out.println();
+            }
+        }
+    }
+}
 
 
 

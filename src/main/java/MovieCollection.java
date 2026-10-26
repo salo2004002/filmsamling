@@ -52,4 +52,13 @@ public class MovieCollection {
         return movies.remove(movie);
     }
 
+    public ArrayList<Movie> getMoviesNotWatchedSince(LocalDate limit) {
+        ArrayList<Movie> result = new ArrayList<>();
+        for (Movie movie : movies) {
+            if (!movie.hasBeenWatched() || movie.getLastWatched().isBefore(limit)) {
+                result.add(movie);
+            }
+        }
+        return result;
+    }
 }
