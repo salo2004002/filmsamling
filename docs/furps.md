@@ -2,7 +2,9 @@
 
 | | Krav | Opfyldt? | Hvor |
 |---|---|---|---|
+
 | F | Man kan søge på en del af en titel | Ja | US4, `MovieCollection.searchMovies` |
+
 | F | Man kan oprete en film og bekræfter med filmens titel efter den er lagt til i samlingen.| Ja | US1, `MovieCollection.addMovie`|
 
 | F | Vill have en menu, der men kan oprete en film og avslut | Ja | US2, `UserInterFace`|
