@@ -5,7 +5,7 @@
 
 | F | Man kan søge på en del af en titel | Ja | US4, `MovieCollection.searchMovies` |
 
-| F | Man kan oprete en film og bekræfter med filmens titel efter den er lagt til i samlingen.| Ja | US1, `MovieCollection.addMovie`|
+| F | Man kan oprete en film og bekræfter med filmens titel efter den er lagt til i samlingen.| Ja | US1, `UserInterFace.addMovie`|
 
 | F | Vill have en menu, der men kan oprete en film og avslut | Ja | US2, `UserInterFace`|
 
@@ -40,6 +40,21 @@
 | F | Programmet spørger, om jeg er sikker, før filmen slettes.| Ja | US6, `UserInterFace`|
 
 | F | Bagefter er filmen væk fra samlingen.| Ja | US6, `UserInterFace`|
+
+| F | Jeg kan markere en film som set, og dagens dato gemmes som sidst set-dato. | Ja | US8, `Controller.markAsWatched` |
+
+| F | Jeg kan angive et antal dage, og se film, der aldrig er set eller ikke er set i mindst det antal dage. | Ja | US9, `Controller.getMoviesNotWatchedForDays` |
+
+| F | En film set præcis for det angivne antal dage siden er ikke med i listen. | Ja | US9, `MovieCollection.getMoviesNotWatchedSince` |
+
+
+| R | Programmet går ikke ned, hvis man skriver bogstaver, hvor der skal stå et tal | Ja | `UserInterface.readInt` |
+
+| S | Al talindlæsning går igennem én metode (`readInt`), så en rettelse kun skal laves ét sted | Ja | `UserInterface.readInt` |
+
+| U | Skriver man et ugyldigt svar på et Yes/No-spørgsmål, bliver man spurgt igen i stedet for at programmet går ned eller gætter | Ja | `UserInterface.addMovie`, `UserInterface.deleteMovies` |
+
+| P | Filen skrives kun, når der er ændringer | Nej – del 7 | 
 
 
 
