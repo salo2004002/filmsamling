@@ -29,6 +29,7 @@ public class UserInterface {
                 default -> System.out.println("Unknown choice" + choice);
             }
         }
+        System.out.print("Goodbye, and thanks for visiting :)");
 
     }
     private int readInt (String prompt){
@@ -41,6 +42,20 @@ public class UserInterface {
                 System.out.println("\"" + input + "\" is not a number.");
             }
         }
+    }
+
+    private int readIntOrKeep(String promt, int currenValue){
+        System.out.println(promt);
+        String input = scanner.nextLine().trim();
+        while (!input.isBlank()){
+            try {
+                return Integer.parseInt(input);
+            }catch (NumberFormatException a){
+                System.out.println("\"" + input + "\" is not a number. Press Enter to keep the current value, or try again: ");
+                input = scanner.nextLine().trim();
+            }
+        }
+        return currenValue;
     }
 
     private void addMovie() {
@@ -114,20 +129,35 @@ public class UserInterface {
 
         System.out.print("new Title: (currently " + movie.getTitle() + "): ");
         String title = scanner.nextLine();
+        if(title.isBlank()){
+            title = movie.getTitle();
+        }
         System.out.print("new Director: (currently " + movie.getDirector() + "): ");
         String director = scanner.nextLine();
-        int yearCreated = readInt("new Year created: (currently " + movie.getYearCreated() + "): ");
+        if(director.isBlank()){
+            director = movie.getDirector();
+        }
+        int yearCreated = readIntOrKeep("new Year created: (currently " + movie.getYearCreated() + "): ", movie.getYearCreated());
 
         System.out.print("Is movie in color (Yes or No): (currently" + movie.isInColor() + "): ");
         String input = scanner.nextLine();
-        while(!input.equalsIgnoreCase("Yes") && !input.equalsIgnoreCase("No")){
-            System.out.print("Invalid input, please write true or false: ");
-            input = scanner.nextLine();
+        boolean isColor;
+        if(input.isBlank()){
+            isColor = movie.isInColor();
+        }else {
+            while(!input.equalsIgnoreCase("Yes") && !input.equalsIgnoreCase("No")){
+                System.out.print("Invalid input, please write true or false: ");
+                input = scanner.nextLine();
         }
-        boolean isColor = input.equalsIgnoreCase("Yes");
-        int lengthInMinutes = readInt("new Length of movie in minutes: (currently " + movie.getLengthInMinutes() + "): ");
+            isColor = input.equalsIgnoreCase("Yes");
+        }
+
+        int lengthInMinutes = readIntOrKeep("new Length of movie in minutes: (currently " + movie.getLengthInMinutes() + "): ", movie.getLengthInMinutes());
         System.out.print("new Genre: currently " + movie.getGenre() + "): ");
         String genre = scanner.nextLine();
+        if(genre.isBlank()){
+            genre = movie.getGenre();
+        }
 
         boolean success = controller.editMovie(movie, title, director, yearCreated, isColor, lengthInMinutes, genre);
 
