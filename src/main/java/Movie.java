@@ -62,7 +62,7 @@ public class Movie {
         this.genre = genre;
     }
     public String toString() {
-        return getTitle() + "\n" + getDirector()+ "\n" + getYearCreated()+ "\n" + isInColor()+ " " + getLengthInMinutes()+ " " + getGenre();
+        return getTitle() + " " + getDirector()+ " " + getYearCreated()+ "\n" + (isInColor() ? "Color" : "Black and white") + " " + getLengthInMinutes()+ " " + getGenre();
     }
 
     public LocalDate getLastWatched() {
