@@ -75,20 +75,28 @@ public class UserInterface {
         int lengthInMinutes = readInt("Length of movie in minutes: ");
         System.out.print("Genre: ");
         String genre = scanner.nextLine();
-        controller.addMovie(title, director, yearCreated, isColor, lengthInMinutes, genre);
+        try {
+            controller.addMovie(title, director, yearCreated, isColor, lengthInMinutes, genre);
+            String frame = "-".repeat(title.length()+20);
+            System.out.println("\n" + frame);
+            System.out.println(title +" added to collection");
+            System.out.println(frame + "\n");
+        }
+        catch (IllegalArgumentException a){
+            System.out.println(a.getMessage());
+        }
 
-        String frame = "-".repeat(title.length()+20);
-        System.out.println("\n" + frame);
-        System.out.println(title +" added to collection");
-        System.out.println(frame + "\n");
     }
 
     private void showAllMovies() {
         ArrayList<Movie> list = controller.getMovies();
-        for (Movie movie : list) {
-            System.out.print(movie.toString());
+        if(list.isEmpty()){
+            System.out.println("\nYou don't have any movies in the list\n");
+        }else {
+            for (Movie movie : list) {
+                System.out.print(movie.toString());
+            }
         }
-
     }
 
     private void searchMovies() {

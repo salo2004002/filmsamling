@@ -4,6 +4,7 @@ import java.time.temporal.ChronoUnit;
 public class Movie {
 
     private static final int  FIRST_MOVIE_YEAR = 1888;
+    private static final int MINIMUM_LENGTH_IN_MINUTES = 1;
     private String title;
     private String director;
     private int yearCreated;
@@ -16,12 +17,12 @@ public class Movie {
 
     public Movie(String title, String director, int yearCreated, boolean inColor,
                  int lengthInMinutes, String genre) {
-        this.title = title;
-        this.director = director;
-        this.yearCreated = yearCreated;
+        setTitle(title);
+        setDirector(director);
+        setYearCreated(yearCreated);
         this.inColor = inColor;
-        this.lengthInMinutes = lengthInMinutes;
-        this.genre = genre;
+        setLengthInMinutes(lengthInMinutes);
+        setGenre(genre);
         this.lastWatched = null;
 
     }
@@ -67,6 +68,9 @@ public class Movie {
         this.inColor = inColor;
     }
     public void setLengthInMinutes(int lengthInMinutes) {
+        if(lengthInMinutes < MINIMUM_LENGTH_IN_MINUTES){
+            throw new IllegalArgumentException("The movie can't be shorter then 1 min ");
+        }
         this.lengthInMinutes = lengthInMinutes;
     }
     public void setGenre(String genre) {
