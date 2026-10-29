@@ -90,10 +90,14 @@ public class Movie {
         return lastWatched != null;
     }
     public void markAsWatched(LocalDate date) {
+        if(date.isAfter(LocalDate.now())){
+            throw new IllegalArgumentException("You can't mark a movie as watched in the future ");
+        }
         lastWatched = date;
     }
     public long getDaysSinceWatched(LocalDate today) {
         return ChronoUnit.DAYS.between(lastWatched, today);
     }
+
 }
 

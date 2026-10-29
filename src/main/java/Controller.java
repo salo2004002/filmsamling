@@ -28,8 +28,8 @@ public class Controller {
         return movieCollection.deleteMovie(movie);
     }
 
-    public void markAsWatched(Movie movie) {
-        movie.markAsWatched(LocalDate.now());
+    public void markAsWatched(Movie movie, LocalDate date) {
+        movie.markAsWatched(date);
     }
 
     public ArrayList<Movie> getMoviesNotWatchedForDays(int days) {

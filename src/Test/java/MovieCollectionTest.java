@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.rmi.MarshalledObject;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -74,6 +73,15 @@ class MovieCollectionTest {
        assertTrue(wasEdited);
        assertEquals("The Casablanca", movieToEdit.getTitle());
        assertEquals("SIv", movieToEdit.getDirector());
+    }
+    @Test
+    void editMovieWhitInvalidValueCHangesNothin(){
+        Movie movie = collection.searchMovies("Casablanc").get(0);
+        String originalTitle = movie.getTitle();
+
+        assertThrows(IllegalArgumentException.class, ()-> collection.editMovie(movie,"", "siv",1998,false,30,"romatic"));
+
+        assertEquals(originalTitle,movie.getTitle());
     }
 
 

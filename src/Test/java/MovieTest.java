@@ -61,4 +61,11 @@ class MovieTest {
             new Movie("abc", "abc", 2023, true, 234, "");
         });
     }
+    @Test
+    void markAsWatchedRejectsFutureDate(){
+        Movie movie = new Movie("abc", "abc", 2000,true,129,"atction");
+        LocalDate future = LocalDate.now().plusYears(2);
+
+        assertThrows(IllegalArgumentException.class, ()-> movie.markAsWatched(future));
+    }
 }

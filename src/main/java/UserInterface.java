@@ -1,3 +1,4 @@
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
@@ -56,6 +57,20 @@ public class UserInterface {
             }
         }
         return currenValue;
+    }
+    private LocalDate readDate(String prompt){
+        while(true){
+            System.out.println(prompt);
+            String input = scanner.nextLine().trim();
+            if(input.isBlank()){
+                return LocalDate.now();
+            }
+            try {
+                return LocalDate.parse(input,dateFormat);
+            }catch (DateTimeException a){
+                System.out.println("\"" + input + "\" is not a valid date (dd-MM-yyyy). ");
+            }
+        }
     }
 
     private void addMovie() {
@@ -166,15 +181,19 @@ public class UserInterface {
         if(genre.isBlank()){
             genre = movie.getGenre();
         }
+        try{
+            boolean success = controller.editMovie(movie, title, director, yearCreated, isColor, lengthInMinutes, genre);
 
-        boolean success = controller.editMovie(movie, title, director, yearCreated, isColor, lengthInMinutes, genre);
-
-        if(success) {
-            System.out.println("Movie information updated");
+            if(success) {
+                System.out.println("Movie information updated");
                 System.out.print(movie);
-        }else{
-            System.out.println("Movie information could not be updated");
+            }else{
+                System.out.println("Movie information could not be updated");
+            }
+        }catch (IllegalArgumentException a){
+            System.out.println(a.getMessage());
         }
+
 
     }
     private void deleteMovies() {
@@ -239,7 +258,8 @@ public class UserInterface {
             }
             Movie movie = found.get(number - 1);
 
-            controller.markAsWatched(movie);
+            LocalDate date = readDate("Date watched (dd-MM-yyyy, blank = today): ");
+            controller.markAsWatched(movie, date);
             System.out.println("\n" + movie + " has been marked as watched\n");
 
         }

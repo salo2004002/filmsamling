@@ -39,6 +39,7 @@ public class MovieCollection {
         if (!movies.contains(movie)) {
             return false;
         }
+        new Movie (title, director, yearCreated, inColor, lengthInMinutes, genre);
         movie.setTitle(title);
         movie.setDirector(director);
         movie.setYearCreated(yearCreated);
