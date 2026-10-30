@@ -19,7 +19,7 @@
 
 | F | Der må ikke stå computer-ord som null, true eller false i udskriften. En film er "farver" eller "sort-hvid" – ikke true.| Ja | US3, `UserInterFace` |
 
-| F | Givet at samlingen er tom, så får jeg en besked om det i stedet for ingenting.| Nej | US3, `UserInterFace`|
+| F | Givet at samlingen er tom, så får jeg en besked om det i stedet for ingenting.| Ja | US3, `UserInterFace`|
 
 | F | Jeg kan søge på en del af titlen: søgningen god finder både The Godfather og Godzilla. | Ja | US4, `UserInterFace`|
 
