@@ -8,3 +8,6 @@ Et CRUD-program til en filmsamling – 1. semester, datamatiker, EK.
 |Salem|salo2004002|
 |Carl|CarlWesterlind|
 |Mathias|Mathias-dat|
+|Tjark|Tjark0522|
+
+
