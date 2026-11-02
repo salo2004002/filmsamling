@@ -3,7 +3,7 @@ import java.time.temporal.ChronoUnit;
 
 public class Movie {
 
-    private static final int  FIRST_MOVIE_YEAR = 1888;
+    private static final int FIRST_MOVIE_YEAR = 1888;
     private static final int MINIMUM_LENGTH_IN_MINUTES = 1;
     private String title;
     private String director;
@@ -12,7 +12,6 @@ public class Movie {
     private int lengthInMinutes;
     private String genre;
     private LocalDate lastWatched;
-
 
 
     public Movie(String title, String director, int yearCreated, boolean inColor,
@@ -26,60 +25,72 @@ public class Movie {
         this.lastWatched = null;
 
     }
-    public String getTitle(){
+
+    public String getTitle() {
         return title;
     }
-    public String getDirector(){
+
+    public String getDirector() {
         return director;
     }
 
     public int getYearCreated() {
         return yearCreated;
     }
+
     public boolean isInColor() {
         return inColor;
     }
+
     public int getLengthInMinutes() {
         return lengthInMinutes;
     }
-    public String getGenre(){
+
+    public String getGenre() {
         return genre;
     }
+
     public void setTitle(String title) {
-       if(title.isBlank())
-           throw new IllegalArgumentException("Title can't be blank");
+        if (title.isBlank())
+            throw new IllegalArgumentException("Title can't be blank");
         this.title = title;
     }
+
     public void setDirector(String director) {
-        if(director.isBlank())
+        if (director.isBlank())
             throw new IllegalArgumentException("Director can't be blank");
 
         this.director = director;
     }
+
     public void setYearCreated(int yearCreated) {
-        if(yearCreated < FIRST_MOVIE_YEAR){
+        if (yearCreated < FIRST_MOVIE_YEAR) {
             throw new IllegalArgumentException("You can't have that year!");
-        } else if (yearCreated > LocalDate.now().getYear() +1) {
+        } else if (yearCreated > LocalDate.now().getYear() + 1) {
             throw new IllegalArgumentException("The movie hassent been relist yet");
         }
         this.yearCreated = yearCreated;
     }
+
     public void setInColor(boolean inColor) {
         this.inColor = inColor;
     }
+
     public void setLengthInMinutes(int lengthInMinutes) {
-        if(lengthInMinutes < MINIMUM_LENGTH_IN_MINUTES){
+        if (lengthInMinutes < MINIMUM_LENGTH_IN_MINUTES) {
             throw new IllegalArgumentException("The movie can't be shorter then 1 min ");
         }
         this.lengthInMinutes = lengthInMinutes;
     }
+
     public void setGenre(String genre) {
-        if(genre.isBlank())
+        if (genre.isBlank())
             throw new IllegalArgumentException("Genre can't be blank");
         this.genre = genre;
     }
+
     public String toString() {
-        return getTitle() + " " + getDirector()+ " " + getYearCreated()+ "\n" + (isInColor() ? "Color" : "Black and white") + " " + getLengthInMinutes()+ " " + getGenre();
+        return getTitle() + " " + getDirector() + " " + getYearCreated() + "\n" + (isInColor() ? "Color" : "Black and white") + " " + getLengthInMinutes() + " " + getGenre();
     }
 
     public LocalDate getLastWatched() {
@@ -89,12 +100,14 @@ public class Movie {
     public boolean hasBeenWatched() {
         return lastWatched != null;
     }
+
     public void markAsWatched(LocalDate date) {
-        if(date.isAfter(LocalDate.now())){
+        if (date.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("You can't mark a movie as watched in the future ");
         }
         lastWatched = date;
     }
+
     public long getDaysSinceWatched(LocalDate today) {
         return ChronoUnit.DAYS.between(lastWatched, today);
     }

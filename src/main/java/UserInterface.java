@@ -18,16 +18,16 @@ public class UserInterface {
         try {
             int count = controller.loadMovies();
             System.out.println(count + " movie(s) loaded.");
-            if(controller.getSkippedLineCount() > 0 ) {
+            if (controller.getSkippedLineCount() > 0) {
                 System.out.println("Warning: " + controller.getSkippedLineCount() + " line(s) skipped due to errors.");
             }
-        } catch (FileNotFoundException a ) {
+        } catch (FileNotFoundException a) {
             System.out.println("No saved file found. Starting fresh. ");
         }
 
         while (isRunning) {
             //Meny
-            System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "6. Mark a film as watched\n" +"7. Find film, you haven't seen in a while\n"+ "0. Stop\n");
+            System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "6. Mark a film as watched\n" + "7. Find film, you haven't seen in a while\n" + "0. Stop\n");
             int choice = readInt("Enter a number: ");
             switch (choice) {
                 case 1 -> addMovie();
@@ -41,49 +41,51 @@ public class UserInterface {
                 default -> System.out.println("Unknown choice" + choice);
             }
         }
-        try{
+        try {
             controller.saveMoviesIfChanged();
-        }catch (FileNotFoundException a){
+        } catch (FileNotFoundException a) {
             System.out.println("Could not save movies: " + a.getMessage());
         }
         System.out.print("Goodbye, and thanks for visiting :)");
 
     }
-    private int readInt (String prompt){
+
+    private int readInt(String prompt) {
         while (true) {
             System.out.print(prompt);
             String input = scanner.nextLine().trim();
             try {
                 return Integer.parseInt(input);
-            }catch (NumberFormatException a) {
+            } catch (NumberFormatException a) {
                 System.out.println("\"" + input + "\" is not a number.");
             }
         }
     }
 
-    private int readIntOrKeep(String promt, int currenValue){
+    private int readIntOrKeep(String promt, int currenValue) {
         System.out.println(promt);
         String input = scanner.nextLine().trim();
-        while (!input.isBlank()){
+        while (!input.isBlank()) {
             try {
                 return Integer.parseInt(input);
-            }catch (NumberFormatException a){
+            } catch (NumberFormatException a) {
                 System.out.println("\"" + input + "\" is not a number. Press Enter to keep the current value, or try again: ");
                 input = scanner.nextLine().trim();
             }
         }
         return currenValue;
     }
-    private LocalDate readDate(String prompt){
-        while(true){
+
+    private LocalDate readDate(String prompt) {
+        while (true) {
             System.out.println(prompt);
             String input = scanner.nextLine().trim();
-            if(input.isBlank()){
+            if (input.isBlank()) {
                 return LocalDate.now();
             }
             try {
-                return LocalDate.parse(input,dateFormat);
-            }catch (DateTimeException a){
+                return LocalDate.parse(input, dateFormat);
+            } catch (DateTimeException a) {
                 System.out.println("\"" + input + "\" is not a valid date (dd-MM-yyyy). ");
             }
         }
@@ -98,7 +100,7 @@ public class UserInterface {
 
         System.out.print("Is movie in color (Yes or No): ");
         String input = scanner.nextLine();
-        while(!input.equalsIgnoreCase("Yes") && !input.equalsIgnoreCase("No")){
+        while (!input.equalsIgnoreCase("Yes") && !input.equalsIgnoreCase("No")) {
             System.out.print("Invalid input, please write Yes or No: ");
             input = scanner.nextLine();
         }
@@ -108,12 +110,11 @@ public class UserInterface {
         String genre = scanner.nextLine();
         try {
             controller.addMovie(title, director, yearCreated, isColor, lengthInMinutes, genre);
-            String frame = "-".repeat(title.length()+20);
+            String frame = "-".repeat(title.length() + 20);
             System.out.println("\n" + frame);
-            System.out.println(title +" added to collection");
+            System.out.println(title + " added to collection");
             System.out.println(frame + "\n");
-        }
-        catch (IllegalArgumentException a){
+        } catch (IllegalArgumentException a) {
             System.out.println(a.getMessage());
         }
 
@@ -121,9 +122,9 @@ public class UserInterface {
 
     private void showAllMovies() {
         ArrayList<Movie> list = controller.getMovies();
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             System.out.println("\nYou don't have any movies in the list\n");
-        }else {
+        } else {
             for (Movie movie : list) {
                 System.out.println(movie.toString());
             }
@@ -144,7 +145,8 @@ public class UserInterface {
 
 
     }
-    private void editMovies(){
+
+    private void editMovies() {
         System.out.println("Search for title: ");
         String searchText = scanner.nextLine();
         ArrayList<Movie> found = controller.searchMovies(searchText);
@@ -156,11 +158,11 @@ public class UserInterface {
             }
         }
 
-        for(int i= 0; i < found.size(); i++){
+        for (int i = 0; i < found.size(); i++) {
             System.out.println((i + 1) + ". " + found.get(i).getTitle());
         }
         int number = readInt("Enter a number");
-        if (number < 1 || number > found.size()){
+        if (number < 1 || number > found.size()) {
             System.out.println("Invalid choice");
             return;
         }
@@ -168,12 +170,12 @@ public class UserInterface {
 
         System.out.print("new Title: (currently " + movie.getTitle() + "): ");
         String title = scanner.nextLine();
-        if(title.isBlank()){
+        if (title.isBlank()) {
             title = movie.getTitle();
         }
         System.out.print("new Director: (currently " + movie.getDirector() + "): ");
         String director = scanner.nextLine();
-        if(director.isBlank()){
+        if (director.isBlank()) {
             director = movie.getDirector();
         }
         int yearCreated = readIntOrKeep("new Year created: (currently " + movie.getYearCreated() + "): ", movie.getYearCreated());
@@ -181,37 +183,38 @@ public class UserInterface {
         System.out.print("Is movie in color (Yes or No): (currently" + movie.isInColor() + "): ");
         String input = scanner.nextLine();
         boolean isColor;
-        if(input.isBlank()){
+        if (input.isBlank()) {
             isColor = movie.isInColor();
-        }else {
-            while(!input.equalsIgnoreCase("Yes") && !input.equalsIgnoreCase("No")){
+        } else {
+            while (!input.equalsIgnoreCase("Yes") && !input.equalsIgnoreCase("No")) {
                 System.out.print("Invalid input, please write true or false: ");
                 input = scanner.nextLine();
-        }
+            }
             isColor = input.equalsIgnoreCase("Yes");
         }
 
         int lengthInMinutes = readIntOrKeep("new Length of movie in minutes: (currently " + movie.getLengthInMinutes() + "): ", movie.getLengthInMinutes());
         System.out.print("new Genre: currently " + movie.getGenre() + "): ");
         String genre = scanner.nextLine();
-        if(genre.isBlank()){
+        if (genre.isBlank()) {
             genre = movie.getGenre();
         }
-        try{
+        try {
             boolean success = controller.editMovie(movie, title, director, yearCreated, isColor, lengthInMinutes, genre);
 
-            if(success) {
+            if (success) {
                 System.out.println("Movie information updated");
                 System.out.print(movie);
-            }else{
+            } else {
                 System.out.println("Movie information could not be updated");
             }
-        }catch (IllegalArgumentException a){
+        } catch (IllegalArgumentException a) {
             System.out.println(a.getMessage());
         }
 
 
     }
+
     private void deleteMovies() {
         System.out.println("search for title: ");
         String searchText = scanner.nextLine();
@@ -240,67 +243,68 @@ public class UserInterface {
             System.out.print("Invalid input, please write Yes or No: ");
             answer = scanner.nextLine();
         }
-            if (answer.equalsIgnoreCase("No")) {
-                System.out.println("Delete cancelled.");
-                return;
-            }
-            if (controller.deleteMovie(movie)) {
-                System.out.println("Movie deleted.");
-            } else {
-                System.out.println("Could not delete the movie");
-            }
-
+        if (answer.equalsIgnoreCase("No")) {
+            System.out.println("Delete cancelled.");
+            return;
         }
-        private void markAsWatched () {
-            System.out.println("search for title: ");
-            String searchText = scanner.nextLine();
-            ArrayList<Movie> found = controller.searchMovies(searchText);
-            if (found.isEmpty()) {
-                System.out.println("Movie was not found");
-            } else {
-                for (Movie movie : found) {
-                    System.out.println(movie);
-                }
-            }
-
-            for (int i = 0; i < found.size(); i++) {
-                System.out.println((i + 1) + ". " + found.get(i).getTitle());
-            }
-            int number = readInt("Enter a number");
-
-            if (number < 1 || number > found.size()) {
-                System.out.println("Invalid choice");
-                return;
-            }
-            Movie movie = found.get(number - 1);
-
-            LocalDate date = readDate("Date watched (dd-MM-yyyy, blank = today): ");
-            controller.markAsWatched(movie, date);
-            System.out.println("\n" + movie + " has been marked as watched\n");
-
+        if (controller.deleteMovie(movie)) {
+            System.out.println("Movie deleted.");
+        } else {
+            System.out.println("Could not delete the movie");
         }
 
-        private void getMoviesNotWatchedForDays () {
-            int days = readInt("How many days? ");
-            ArrayList<Movie> result = controller.getMoviesNotWatchedForDays(days);
+    }
 
-            if (result.isEmpty()) {
-                System.out.println("Film not found");
-            } else {
-                for (Movie movie : result) {
-                    System.out.println(movie);
-                    if (movie.hasBeenWatched()) {
-                        String date = movie.getLastWatched().format(dateFormat);
-                        long daysSince = movie.getDaysSinceWatched(LocalDate.now());
-                        System.out.println("Last seen: " + date + " ( " + daysSince + " days ago)");
-                    } else {
-                        System.out.println("Last seen: Never");
-                    }
-                    System.out.println();
+    private void markAsWatched() {
+        System.out.println("search for title: ");
+        String searchText = scanner.nextLine();
+        ArrayList<Movie> found = controller.searchMovies(searchText);
+        if (found.isEmpty()) {
+            System.out.println("Movie was not found");
+        } else {
+            for (Movie movie : found) {
+                System.out.println(movie);
+            }
+        }
+
+        for (int i = 0; i < found.size(); i++) {
+            System.out.println((i + 1) + ". " + found.get(i).getTitle());
+        }
+        int number = readInt("Enter a number");
+
+        if (number < 1 || number > found.size()) {
+            System.out.println("Invalid choice");
+            return;
+        }
+        Movie movie = found.get(number - 1);
+
+        LocalDate date = readDate("Date watched (dd-MM-yyyy, blank = today): ");
+        controller.markAsWatched(movie, date);
+        System.out.println("\n" + movie + " has been marked as watched\n");
+
+    }
+
+    private void getMoviesNotWatchedForDays() {
+        int days = readInt("How many days? ");
+        ArrayList<Movie> result = controller.getMoviesNotWatchedForDays(days);
+
+        if (result.isEmpty()) {
+            System.out.println("Film not found");
+        } else {
+            for (Movie movie : result) {
+                System.out.println(movie);
+                if (movie.hasBeenWatched()) {
+                    String date = movie.getLastWatched().format(dateFormat);
+                    long daysSince = movie.getDaysSinceWatched(LocalDate.now());
+                    System.out.println("Last seen: " + date + " ( " + daysSince + " days ago)");
+                } else {
+                    System.out.println("Last seen: Never");
                 }
+                System.out.println();
             }
         }
     }
+}
 
 
 

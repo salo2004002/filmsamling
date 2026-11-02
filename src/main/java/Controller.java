@@ -25,8 +25,8 @@ public class Controller {
     }
 
     public boolean editMovie(Movie movie, String title, String director, int yearCreated, boolean inColor, int lengthInMinutes, String genre) {
-        boolean success = movieCollection.editMovie(movie, title, director, yearCreated, inColor, lengthInMinutes, genre );
-        if(success){
+        boolean success = movieCollection.editMovie(movie, title, director, yearCreated, inColor, lengthInMinutes, genre);
+        if (success) {
             changed = true;
         }
         return success;
@@ -35,7 +35,7 @@ public class Controller {
 
     public boolean deleteMovie(Movie movie) {
         boolean success = movieCollection.deleteMovie(movie);
-        if(success){
+        if (success) {
             changed = true;
         }
         return success;
@@ -50,22 +50,25 @@ public class Controller {
         LocalDate limit = LocalDate.now().minusDays(days);
         return movieCollection.getMoviesNotWatchedSince(limit);
     }
-    public int loadMovies() throws FileNotFoundException{
+
+    public int loadMovies() throws FileNotFoundException {
         ArrayList<Movie> movies = fileHandler.loadMovies();
-        for(Movie movie: movies){
+        for (Movie movie : movies) {
             movieCollection.addMovie(movie);
         }
         return movies.size();
     }
-    public boolean saveMoviesIfChanged() throws FileNotFoundException{
-        if(changed){
+
+    public boolean saveMoviesIfChanged() throws FileNotFoundException {
+        if (changed) {
             fileHandler.saveMovies(movieCollection.getMovies());
             changed = false;
             return true;
         }
         return false;
     }
-    public int getSkippedLineCount(){
+
+    public int getSkippedLineCount() {
         return fileHandler.getSkippedLineCount();
     }
 
