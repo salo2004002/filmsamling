@@ -13,7 +13,7 @@ public class UserInterface {
 
     public void startProgram() {
         boolean isRunning = true;
-        System.out.println("Welcome to the film archive");
+        System.out.println("Welcome to the movie archive\n");
 
         try {
             int count = controller.loadMovies();
