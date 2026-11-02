@@ -27,7 +27,16 @@ public class UserInterface {
 
         while (isRunning) {
             //Meny
-            System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "6. Mark a film as watched\n" + "7. Find film, you haven't seen in a while\n" + "0. Stop\n");
+            System.out.println("""
+            1. Create a movie
+            2. Show all movies
+            3. Search movies
+            4. Edit a movie
+            5. Delete a movie
+            6. Mark a film as watched
+            7. Find film, you haven't seen in a while
+            0. Stop\n""");
+
             int choice = readInt("Enter a number: ");
             switch (choice) {
                 case 1 -> addMovie();
