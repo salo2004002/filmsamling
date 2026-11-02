@@ -1,4 +1,6 @@
 target/
+movies.csv
+test-movies.csv
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
