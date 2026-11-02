@@ -298,7 +298,7 @@ public class UserInterface {
         ArrayList<Movie> result = controller.getMoviesNotWatchedForDays(days);
 
         if (result.isEmpty()) {
-            System.out.println("Film not found");
+            System.out.println("Movie not found");
         } else {
             for (Movie movie : result) {
                 System.out.println(movie);
