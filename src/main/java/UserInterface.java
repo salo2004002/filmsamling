@@ -246,7 +246,7 @@ public class UserInterface {
         }
         Movie movie = found.get(number - 1);
 
-        System.out.println("You are about to delete " + movie.getTitle() + "\"" + "Are you sure? Decision is FINAL! \" " + "Yes/No");//Ændre til yes/no senere
+        System.out.println("You are about to delete " + movie.getTitle() + "\"" + "Are you sure? Decision is FINAL! \" " + "Yes/No");
         String answer = scanner.nextLine();
         while (!answer.equalsIgnoreCase("Yes") && !answer.equalsIgnoreCase("No")) {
             System.out.print("Invalid input, please write Yes or No: ");

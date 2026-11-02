@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 public class FileHandler {
     private static final String HEADER = "title;director;yearCreated;inColor;lengthInMinutes;genre;lastWatched";
-    private String filmName;
+    private String movieName;
     private int skippedLineCount;
 
     public FileHandler(String filmName) {
-        this.filmName = filmName;
+        this.movieName = filmName;
     }
 
     public int getSkippedLineCount() {
@@ -20,7 +20,7 @@ public class FileHandler {
     }
 
     public void saveMovies(ArrayList<Movie> movies) throws FileNotFoundException {
-        PrintStream output = new PrintStream(new File(filmName));
+        PrintStream output = new PrintStream(new File(movieName));
         output.println(HEADER);
         for (Movie movie : movies) {
             output.println(toCsvLine(movie));
@@ -44,7 +44,7 @@ public class FileHandler {
 
     public ArrayList<Movie> loadMovies() throws FileNotFoundException {
         ArrayList<Movie> movies = new ArrayList<>();
-        Scanner fillScanner = new Scanner(new File(filmName));
+        Scanner fillScanner = new Scanner(new File(movieName));
         skippedLineCount = 0;
         if (fillScanner.hasNextLine()) {
             fillScanner.nextLine();
