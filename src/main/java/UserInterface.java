@@ -16,8 +16,8 @@ public class UserInterface {
         System.out.println("Welcome to the movie archive\n");
 
         try {
-            int count = controller.loadMovies();
-            System.out.println(count + " movie(s) loaded.");
+            controller.loadMovies();
+
             if (controller.getSkippedLineCount() > 0) {
                 System.out.println("Warning: " + controller.getSkippedLineCount() + " line(s) skipped due to errors.");
             }
