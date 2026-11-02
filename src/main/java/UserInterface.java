@@ -33,8 +33,8 @@ public class UserInterface {
             3. Search movies
             4. Edit a movie
             5. Delete a movie
-            6. Mark a film as watched
-            7. Find film, you haven't seen in a while
+            6. Mark a movie as watched
+            7. Find movie, you haven't seen in a while
             0. Stop\n""");
 
             int choice = readInt("Enter a number: ");
