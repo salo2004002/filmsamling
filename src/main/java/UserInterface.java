@@ -125,7 +125,7 @@ public class UserInterface {
             System.out.println("\nYou don't have any movies in the list\n");
         }else {
             for (Movie movie : list) {
-                System.out.print(movie.toString());
+                System.out.println(movie.toString());
             }
         }
     }
@@ -138,7 +138,7 @@ public class UserInterface {
             System.out.println("Movie was not found");
         } else {
             for (Movie movie : found) {
-                System.out.print("- " + movie);
+                System.out.println("- " + movie);
             }
         }
 
