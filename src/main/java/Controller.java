@@ -1,7 +1,6 @@
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.oi.FileNotFoundException;
 
 public class Controller {
     MovieCollection movieCollection = new MovieCollection();
@@ -58,4 +57,17 @@ public class Controller {
         }
         return movies.size();
     }
+    public boolean saveMoviesIfChanged() throws FileNotFoundException{
+        if(changed){
+            fileHandler.saveMovies(movieCollection.getMovies());
+            changed = false;
+            return true;
+        }
+        return false;
+    }
+    public int getSkippedLineCount(){
+        return fileHandler.getSkippedLineCount();
+    }
+
 }
+

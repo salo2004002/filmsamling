@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,6 +15,16 @@ public class UserInterface {
         boolean isRunning = true;
         System.out.println("Welcome to the film archive");
 
+        try {
+            int count = controller.loadMovies();
+            System.out.println(count + " movie(s) loaded.");
+            if(controller.getSkippedLineCount() > 0 ) {
+                System.out.println("Warning: " + controller.getSkippedLineCount() + " line(s) skipped due to errors.");
+            }
+        } catch (FileNotFoundException a ) {
+            System.out.println("No saved file found. Starting fresh. ");
+        }
+
         while (isRunning) {
             //Meny
             System.out.println("1. Create a movie\n" + "2. Show all movies\n" + "3. Search movies\n" + "4. Edit a movie\n" + "5. Delete a movie\n" + "6. Mark a film as watched\n" +"7. Find film, you haven't seen in a while\n"+ "0. Stop\n");
@@ -29,6 +40,11 @@ public class UserInterface {
                 case 0 -> isRunning = false;
                 default -> System.out.println("Unknown choice" + choice);
             }
+        }
+        try{
+            controller.saveMoviesIfChanged();
+        }catch (FileNotFoundException a){
+            System.out.println("Could not save movies: " + a.getMessage());
         }
         System.out.print("Goodbye, and thanks for visiting :)");
 
