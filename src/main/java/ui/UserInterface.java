@@ -81,8 +81,8 @@ public class UserInterface {
         }
     }
 
-    private int readIntOrKeep(String promt, int currenValue) {
-        System.out.println(promt);
+    private int readIntOrKeep(String prompt, int currentValue) {
+        System.out.println(prompt);
         String input = scanner.nextLine().trim();
         while (!input.isBlank()) {
             try {
@@ -92,7 +92,7 @@ public class UserInterface {
                 input = scanner.nextLine().trim();
             }
         }
-        return currenValue;
+        return currentValue;
     }
 
     private LocalDate readDate(String prompt) {
