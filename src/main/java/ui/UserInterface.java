@@ -246,7 +246,6 @@ public class UserInterface {
             System.out.println("Movie was not found");
         } else {
             for (Movie movie : found) {
-                System.out.println(movie);
             }
         }
 
@@ -260,7 +259,7 @@ public class UserInterface {
         }
         Movie movie = found.get(number - 1);
 
-        System.out.println("You are about to delete " + movie.getTitle() + "\"" + "Are you sure? Decision is FINAL! \" " + "Yes/No");
+        System.out.println("You are about to delete " + movie.getTitle() + " " + "\"" + "Are you sure? Decision is FINAL! \" " + "Yes/No");
         String answer = scanner.nextLine();
         while (!answer.equalsIgnoreCase("Yes") && !answer.equalsIgnoreCase("No")) {
             System.out.print("Invalid input, please write Yes or No: ");
@@ -272,6 +271,13 @@ public class UserInterface {
         }
         if (controller.deleteMovie(movie)) {
             System.out.println("Movie deleted.");
+            System.out.println("-".repeat(30) + "\n" + "Title: " + movie.getTitle() + "\n" +
+                    "Director: " + movie.getDirector() + "\n" +
+                    "Year: " + movie.getYearCreated() + "\n" +
+                    "Color/ Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                    "Length: " + movie.getLengthInMinutes() + "\n" +
+                    "Genre: " + movie.getGenre() + "\n" +
+                    "-".repeat(30));
         } else {
             System.out.println("Could not delete the movie");
         }
