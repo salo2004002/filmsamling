@@ -354,6 +354,10 @@ public class UserInterface {
             case 5 -> SortField.GENRE;
             default -> null;
         };
+        if (field == null){
+            System.out.println("invalid choice");
+            return;
+        }
 
         ArrayList<Movie> list = controller.getMoviesSortedBy(field);
         if (list.isEmpty()) {
