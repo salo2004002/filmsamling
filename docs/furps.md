@@ -2,7 +2,7 @@
 
 | | Krav | Opfyldt? | Hvor |
 |---|---|---|---|
-| F | Man kan søge på en del af en titel | Ja | US4, `MovieCollection.searchMovies` |
+| F | Man kan søge på en del af en titel | Ja | US4, `domainmodel.MovieCollection` |
 | F | Man kan oprete en film og bekræfter med filmens titel efter den er lagt til i samlingen.| Ja | US1, `UserInterFace.addMovie`|
 | F | Vill have en menu, der men kan oprete en film og avslut | Ja | US2, `UserInterFace`|
 | F | Skal vises menun igen når man har udføt dit val | Ja | US2, `UserInterFace`|
@@ -23,13 +23,13 @@
 | F | Bagefter er filmen væk fra samlingen.| Ja | US6, `UserInterFace`|
 | F | Jeg kan markere en film som set, og dagens dato gemmes som sidst set-dato. | Ja | US8, `Controller.markAsWatched` |
 | F | Jeg kan angive et antal dage, og se film, der aldrig er set eller ikke er set i mindst det antal dage. | Ja | US9, `Controller.getMoviesNotWatchedForDays` |
-| F | En film set præcis for det angivne antal dage siden er ikke med i listen. | Ja | US9, `MovieCollection.getMoviesNotWatchedSince` |
+| F | En film set præcis for det angivne antal dage siden er ikke med i listen. | Ja | US9, `domainmodel.MovieCollection` |
 | R | Programmet går ikke ned, hvis man skriver bogstaver, hvor der skal stå et tal | Ja | `UserInterface.readInt` |
 | S | Al talindlæsning går igennem én metode (`readInt`), så en rettelse kun skal laves ét sted | Ja | `UserInterface.readInt` |
 | U | Skriver man et ugyldigt svar på et Yes/No-spørgsmål, bliver man spurgt igen i stedet for at programmet går ned eller gætter | Ja | `UserInterface.addMovie`, `UserInterface.deleteMovies` |
 | P | Filen skrives kun, når der er ændringer | Ja | US14, `Controller.saveMoviesIfChanged`, `UserInterface.startProgram` |
 | F | Programmet kan ikke oprette eller redigere en film med ugyldige værdier (tom titel/instruktør/genre, år udenfor gyldigt interval, længde under 1 min) – i stedet får jeg en fejlbesked. | Ja | US11, `Movie` (settere + konstruktør) |
-| F | Redigering af en film er alt-eller-intet: hvis en af de nye værdier er ugyldig, bliver ingen af filmens oplysninger ændret. | Ja | US11, `MovieCollection.editMovie` |
+| F | Redigering af en film er alt-eller-intet: hvis en af de nye værdier er ugyldig, bliver ingen af filmens oplysninger ændret. | Ja | US11, `domainmodel.MovieCollection` |
 | F | Jeg kan ikke markere en film som set med en fremtidig dato. | Ja | US12, `Movie.markAsWatched` |
 | F | Når programmet starter, indlæses filmene automatisk fra en fil, hvis den findes. | Ja | US13, `Controller.loadMovies`, `UserInterface.startProgram` |
 

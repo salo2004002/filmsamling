@@ -1,3 +1,7 @@
+package ui;
+import domainmodel.Movie;
+import domainmodel.Controller;
+
 import java.io.FileNotFoundException;
 import java.time.DateTimeException;
 import java.util.ArrayList;

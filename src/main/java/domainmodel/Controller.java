@@ -1,3 +1,6 @@
+package domainmodel;
+import datasource.FileHandler;
+
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -60,12 +63,14 @@ public class Controller {
     }
 
     public boolean saveMoviesIfChanged() throws FileNotFoundException {
-        if (changed) {
+        if (!changed) {
+            return false;
+        }
+        else {
             fileHandler.saveMovies(movieCollection.getMovies());
             changed = false;
             return true;
         }
-        return false;
     }
 
     public int getSkippedLineCount() {
