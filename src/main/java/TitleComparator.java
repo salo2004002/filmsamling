@@ -2,7 +2,7 @@ import domainmodel.Movie;
 
 import java.util.Comparator;
 
-public class titleComparator implements Comparator<Movie> {
+public class TitleComparator implements Comparator<Movie> {
 
     @Override
     public int compare(Movie movie1, Movie movie2){
