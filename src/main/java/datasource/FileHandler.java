@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
-    private static final String HEADER = "title;director;yearCreated;inColor;lengthInMinutes;genre;lastWatched";
+    private static final String HEADER = "title; director; yearCreated; inColor; lengthInMinutes; genre; lastWatched";
     private String movieName;
     private int skippedLineCount;
 

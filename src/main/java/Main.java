@@ -6,7 +6,6 @@ public class Main {
         UserInterface face = new UserInterface();
         face.startProgram();
 
-
     }
 
 }
