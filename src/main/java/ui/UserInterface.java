@@ -345,16 +345,22 @@ public class UserInterface {
             case 5 -> SortField.GENRE;
             default -> null;
         };
-        if (field == null) {
-            System.out.println("Invalid choice");
-            return;
-        }
-        ArrayList<Movie> sortedMovies = controller.getMoviesSortedBy(field);
 
-        for (Movie movie : sortedMovies) {
-            System.out.println(movie);
+        ArrayList<Movie> list = controller.getMoviesSortedBy(field);
+        if (list.isEmpty()) {
+            System.out.println("\nYou don't have any movies in the list\n");}
+            else {
+            for (Movie movie : list) {
+                System.out.println("-".repeat(30));
+                System.out.println("Title: " + movie.getTitle() + "\n" +
+                        "Director: " + movie.getDirector() + "\n" +
+                        "Year: " + movie.getYearCreated() + "\n" +
+                        "Color/ Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                        "Length: " + movie.getLengthInMinutes() + "\n" +
+                        "Genre: " + movie.getGenre());
+            }
+            System.out.println("-".repeat(30));
         }
-
     }
 }
 
