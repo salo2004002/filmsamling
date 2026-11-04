@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+
 public class Controller {
     MovieCollection movieCollection = new MovieCollection();
     private FileHandler fileHandler = new FileHandler("movies.csv");
