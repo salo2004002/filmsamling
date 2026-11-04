@@ -92,7 +92,7 @@ public class Movie implements Comparable<Movie> {
     }
 
     public String toString() {
-        return getTitle() + " " + getDirector() + " " + getYearCreated() + "\n" + (isInColor() ? "Color" : "Black and white") + " " + getLengthInMinutes() + " " + getGenre();
+        return getTitle() + "\n" + getDirector() + "\n" + getYearCreated() + "\n" + (isInColor() ? "Color" : "Black and white") + "\n" + getLengthInMinutes() + "\n" + getGenre();
     }
 
     public LocalDate getLastWatched() {

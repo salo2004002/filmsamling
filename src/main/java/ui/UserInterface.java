@@ -143,7 +143,12 @@ public class UserInterface {
         } else {
             for (Movie movie : list) {
                 System.out.println("-".repeat(30));
-                System.out.println(movie);
+                System.out.println("Title: " + movie.getTitle() + "\n" +
+                                   "Director: " + movie.getDirector() + "\n" +
+                                   "Year: " + movie.getYearCreated() + "\n" +
+                                   "Color/ Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                                   "Length: " + movie.getLengthInMinutes() + "\n" +
+                                   "Genre: " + movie.getGenre());
             }
             System.out.println("-".repeat(30));
         }
