@@ -327,6 +327,35 @@ public class UserInterface {
             }
         }
     }
+
+    private void showMoviesSortedBy() {
+        System.out.println("Sort by " + "\n" + """
+                1. Title
+                2. Director
+                3. Year
+                4. Length
+                5. Genre
+                """);
+        int choice = readInt("Enter a number: ");
+        SortField field = switch(choice) {
+            case 1 -> SortField.TITLE;
+            case 2 -> SortField.DIRECTOR;
+            case 3 -> SortField.YEAR;
+            case 4 -> SortField.LENGTH;
+            case 5 -> SortField.GENRE;
+            default -> null;
+        };
+        if (field == null) {
+            System.out.println("Invalid choice");
+            return;
+        }
+        ArrayList<Movie> sortedMovies = controller.getMoviesSortedBy(field);
+
+        for (Movie movie : sortedMovies) {
+            System.out.println(movie);
+        }
+
+    }
 }
 
 
