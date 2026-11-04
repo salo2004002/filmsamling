@@ -1,8 +1,9 @@
 package domainmodel;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 
-public class Movie {
+public class Movie implements Comparable<Movie> {
 
     private static final int FIRST_MOVIE_YEAR = 1888;
     private static final int MINIMUM_LENGTH_IN_MINUTES = 1;
@@ -112,6 +113,12 @@ public class Movie {
     public long getDaysSinceWatched(LocalDate today) {
         return ChronoUnit.DAYS.between(lastWatched, today);
     }
+
+    @Override
+    public int compareTo(Movie other) {
+        return title.compareToIgnoreCase(other.title);
+    }
+
 
 }
 
