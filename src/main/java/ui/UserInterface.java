@@ -149,9 +149,11 @@ public class UserInterface {
                 System.out.println("Title: " + movie.getTitle() + "\n" +
                                    "Director: " + movie.getDirector() + "\n" +
                                    "Year: " + movie.getYearCreated() + "\n" +
-                                   "Color/ Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                                   "Color/Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
                                    "Length: " + movie.getLengthInMinutes() + "\n" +
-                                   "Genre: " + movie.getGenre());
+                                   "Genre: " + movie.getGenre() + "\n" +
+                                   "Last seen: " + (movie.hasBeenWatched() ? movie.getLastWatched().format(dateFormat) : "Never"));
+
             }
             System.out.println("-".repeat(30));
         }
@@ -165,23 +167,39 @@ public class UserInterface {
             System.out.println("Movie was not found");
         } else {
             for (Movie movie : found) {
-                System.out.println("- " + movie);
+                System.out.println("-".repeat(30));
+                System.out.println("Title: " + movie.getTitle() + "\n" +
+                        "Director: " + movie.getDirector() + "\n" +
+                        "Year: " + movie.getYearCreated() + "\n" +
+                        "Color/Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                        "Length: " + movie.getLengthInMinutes() + "\n" +
+                        "Genre: " + movie.getGenre()+ "\n" +
+                        "Last seen: " + (movie.hasBeenWatched() ? movie.getLastWatched().format(dateFormat) : "Never"));
             }
+            System.out.println("-".repeat(30));
         }
 
 
     }
 
     private void editMovies() {
-        System.out.println("Search for title: ");
+        System.out.print("Search for title: ");
         String searchText = scanner.nextLine();
         ArrayList<Movie> found = controller.searchMovies(searchText);
         if (found.isEmpty()) {
             System.out.println("Movie was not found");
         } else {
             for (Movie movie : found) {
-                System.out.println(movie);
+                System.out.println("-".repeat(30));
+                System.out.println("Title: " + movie.getTitle() + "\n" +
+                        "Director: " + movie.getDirector() + "\n" +
+                        "Year: " + movie.getYearCreated() + "\n" +
+                        "Color/Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                        "Length: " + movie.getLengthInMinutes() + "\n" +
+                        "Genre: " + movie.getGenre()+ "\n" +
+                        "Last seen: " + (movie.hasBeenWatched() ? movie.getLastWatched().format(dateFormat) : "Never"));
             }
+            System.out.println("-".repeat(30));
         }
 
         for (int i = 0; i < found.size(); i++) {
@@ -230,7 +248,15 @@ public class UserInterface {
 
             if (success) {
                 System.out.println("Movie information updated");
-                System.out.print(movie);
+                System.out.println("-".repeat(30));
+                System.out.println("Title: " + movie.getTitle() + "\n" +
+                        "Director: " + movie.getDirector() + "\n" +
+                        "Year: " + movie.getYearCreated() + "\n" +
+                        "Color/Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                        "Length: " + movie.getLengthInMinutes() + "\n" +
+                        "Genre: " + movie.getGenre()+ "\n" +
+                        "Last seen: " + (movie.hasBeenWatched() ? movie.getLastWatched().format(dateFormat) : "Never"));
+                System.out.println("-".repeat(30));
             } else {
                 System.out.println("Movie information could not be updated");
             }
@@ -249,7 +275,16 @@ public class UserInterface {
             System.out.println("Movie was not found");
         } else {
             for (Movie movie : found) {
+                System.out.println("-".repeat(30));
+                System.out.println("Title: " + movie.getTitle() + "\n" +
+                        "Director: " + movie.getDirector() + "\n" +
+                        "Year: " + movie.getYearCreated() + "\n" +
+                        "Color/Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                        "Length: " + movie.getLengthInMinutes() + "\n" +
+                        "Genre: " + movie.getGenre()+ "\n" +
+                        "Last seen: " + (movie.hasBeenWatched() ? movie.getLastWatched().format(dateFormat) : "Never"));
             }
+            System.out.println("-".repeat(30));
         }
 
         for (int i = 0; i < found.size(); i++) {
@@ -277,9 +312,10 @@ public class UserInterface {
             System.out.println("-".repeat(30) + "\n" + "Title: " + movie.getTitle() + "\n" +
                     "Director: " + movie.getDirector() + "\n" +
                     "Year: " + movie.getYearCreated() + "\n" +
-                    "Color/ Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                    "Color/Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
                     "Length: " + movie.getLengthInMinutes() + "\n" +
                     "Genre: " + movie.getGenre() + "\n" +
+                    "Last seen: " + (movie.hasBeenWatched() ? movie.getLastWatched().format(dateFormat) : "Never")+ "\n" +
                     "-".repeat(30));
         } else {
             System.out.println("Could not delete the movie");
@@ -288,15 +324,23 @@ public class UserInterface {
     }
 
     private void markAsWatched() {
-        System.out.println("search for title: ");
+        System.out.print("search for title: ");
         String searchText = scanner.nextLine();
         ArrayList<Movie> found = controller.searchMovies(searchText);
         if (found.isEmpty()) {
             System.out.println("Movie was not found");
         } else {
             for (Movie movie : found) {
-                System.out.println(movie);
+                System.out.println("-".repeat(30));
+                System.out.println("Title: " + movie.getTitle() + "\n" +
+                        "Director: " + movie.getDirector() + "\n" +
+                        "Year: " + movie.getYearCreated() + "\n" +
+                        "Color/Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                        "Length: " + movie.getLengthInMinutes() + "\n" +
+                        "Genre: " + movie.getGenre()+ "\n" +
+                        "Last seen: " + (movie.hasBeenWatched() ? movie.getLastWatched().format(dateFormat) : "Never"));
             }
+            System.out.println("-".repeat(30));
         }
 
         for (int i = 0; i < found.size(); i++) {
@@ -312,7 +356,7 @@ public class UserInterface {
 
         LocalDate date = readDate("Date watched (dd-MM-yyyy, blank = today): ");
         controller.markAsWatched(movie, date);
-        System.out.println("\n" + movie + " has been marked as watched\n");
+        System.out.println("\n" + movie.getTitle() + " has been marked as watched on " + date.format(dateFormat)+ "\n");
 
     }
 
@@ -321,7 +365,7 @@ public class UserInterface {
         ArrayList<Movie> result = controller.getMoviesNotWatchedForDays(days);
 
         if (result.isEmpty()) {
-            System.out.println("Movie not found");
+            System.out.println("Movie was not found");
         } else {
             for (Movie movie : result) {
                 System.out.println(movie);
@@ -368,9 +412,10 @@ public class UserInterface {
                 System.out.println("Title: " + movie.getTitle() + "\n" +
                         "Director: " + movie.getDirector() + "\n" +
                         "Year: " + movie.getYearCreated() + "\n" +
-                        "Color/ Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
+                        "Color/Black and white: " + (movie.isInColor() ? "Color" : "Black and white") + "\n" +
                         "Length: " + movie.getLengthInMinutes() + "\n" +
-                        "Genre: " + movie.getGenre());
+                        "Genre: " + movie.getGenre()+ "\n" +
+                        "Last seen: " + (movie.hasBeenWatched() ? movie.getLastWatched().format(dateFormat) : "Never"));
             }
             System.out.println("-".repeat(30));
         }
