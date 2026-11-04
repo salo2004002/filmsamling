@@ -29,7 +29,7 @@
 | U | Skriver man et ugyldigt svar på et Yes/No-spørgsmål, bliver man spurgt igen i stedet for at programmet går ned eller gætter | Ja | `UserInterface.addMovie`, `UserInterface.deleteMovies` |
 | P | Filen skrives kun, når der er ændringer | Ja | US14, `Controller.saveMoviesIfChanged`, `UserInterface.startProgram` |
 | F | Programmet kan ikke oprette eller redigere en film med ugyldige værdier (tom titel/instruktør/genre, år udenfor gyldigt interval, længde under 1 min) – i stedet får jeg en fejlbesked. | Ja | US11, `Movie` (settere + konstruktør)                      |
-| F | Redigering af en film er alt-eller-intet: hvis en af de nye værdier er ugyldig, bliver ingen af filmens oplysninger ændret. | Ja     | US11, `domainmodel.MovieCollection`  |
+| F | Redigering af en film er alt-eller-intet: hvis en af de nye værdier er ugyldig, bliver ingen af filmens oplysninger ændret. | Ja | US11, `domainmodel.MovieCollection`  |
 | F | Jeg kan ikke markere en film som set med en fremtidig dato. | Ja | US12, `Movie.markAsWatched` |
 | F | Når programmet starter, indlæses filmene automatisk fra en fil, hvis den findes. | Ja     | US13, `Controller.loadMovies`, `UserInterface.startProgram` |
 | F | Givet at jeg afslutter programmet med menuvalg 0, så gemmes samlingen i filen movies.csv. | ja | US13, `Controller.saveMoviesIsChanged`, `UserInterface.startProgram`|
@@ -37,7 +37,7 @@
 | F | Alle oplysninger overlever – også æ, ø og å i titlerne, og datoen for, hvornår jeg sidst så filmen.| Ja | US13, `FileHandler.saveMovis`, `FileHandler.loadMovies`|
 | F |Givet at movies.csv ikke findes, når programmet startes, så starter jeg med en tom filmsamling i stedet for en fejl.| Ja | US13, `UserInterface.startProgram` |
 | R |Givet at movies.csv ikke findes, når programmet startes, så fanges FileNotFoundException, og programmet crasher ikke.| Ja | US13, `Controller.loadMovies`, `UserInteface.statProgram`|
-| R |Givet at en linje i filen er ødelagt, så springes den over, jeg får en advarsel, og resten af filmene indlæses.| Ja | US13,  |
+| R |Givet at en linje i filen er ødelagt, så springes den over, jeg får en advarsel, og resten af filmene indlæses.| Ja | US13, `FileHandler.loadMovies`, `Contreoller.getSkippedLineCount`, `UserInterface.starProgram`  |
 | P |Givet at jeg hverken har oprettet, rettet, slettet eller markeret en film som set, når jeg afslutter, så bliver filen ikke skrevet, og jeg får at vide, at der ikke var noget at gemme.| ja | US14, `UserInteface.startProgram`|
 | S |Klasserne ligger i tre packages: ui, domainmodel og datasource.| Ja | US15, |
 | S |Givet at klasserne er flyttet til nye packages, når jeg bruger programmet, så virker alle menuvalg på samme måde som før, og brugeren kan ikke mærke nogen forskel.| Ja | US15,|
