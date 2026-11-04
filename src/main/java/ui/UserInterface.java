@@ -40,6 +40,7 @@ public class UserInterface {
             5. Delete a movie
             6. Mark a movie as watched
             7. Find movie, you haven't seen in a while
+            8. Show movies sorted by
             0. Stop\n""");
 
             int choice = readInt("Enter a number: ");
@@ -51,6 +52,7 @@ public class UserInterface {
                 case 5 -> deleteMovies();
                 case 6 -> markAsWatched();
                 case 7 -> getMoviesNotWatchedForDays();
+                case 8 -> showMoviesSortedBy();
                 case 0 -> isRunning = false;
                 default -> System.out.println("Unknown choice" + choice);
             }
