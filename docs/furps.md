@@ -32,13 +32,13 @@
 | F   | Redigering af en film er alt-eller-intet: hvis en af de nye værdier er ugyldig, bliver ingen af filmens oplysninger ændret. | Ja       | US11, `domainmodel.MovieCollection`                                  |
 | F   | Jeg kan ikke markere en film som set med en fremtidig dato.             | Ja       | US12, `Movie.markAsWatched`                                          |
 | F   | Når programmet starter, indlæses filmene automatisk fra en fil, hvis den findes. | Ja       | US13, `Controller.loadMovies`, `UserInterface.startProgram`          |
-| F   | Givet at jeg afslutter programmet med menuvalg 0, så gemmes samlingen i filen movies.csv. | Nej      | US13, 'Controller.'                                                  |
+| F   | Givet at jeg afslutter programmet med menuvalg 0, så gemmes samlingen i filen movies.csv. | ja      | US13, `Controller.saveMoviesIdChanged`, `UserInterFace.startProgram`                                                  |
 | F   | Givet at programmet startes, og movies.csv findes, så indlæses filmene, og jeg får at vide, hvor mange der blev indlæst.| Ja       | US13,                                                                |
 | F   | Alle oplysninger overlever – også æ, ø og å i titlerne, og datoen for, hvornår jeg sidst så filmen.| Ja       | US13,                                                                |
 | F   |Givet at filen ikke findes (første gang programmet kører), så starter jeg med en tom samling – programmet går ikke ned.| Ja       | US13,                                                                |
 | R   |Givet at filen ikke findes (første gang programmet kører), så starter jeg med en tom samling – programmet går ikke ned.| Ja       | US13,                                                                |
 | R   |Givet at en linje i filen er ødelagt, så springes den over, jeg får en advarsel, og resten af filmene indlæses.| Ja       | US13,                                                                |
-| P   |Givet at jeg hverken har oprettet, rettet, slettet eller markeret en film som set, når jeg afslutter, så bliver filen ikke skrevet, og jeg får at vide, at der ikke var noget at gemme.| Nej      | US14                                                                 |
+| P   |Givet at jeg hverken har oprettet, rettet, slettet eller markeret en film som set, når jeg afslutter, så bliver filen ikke skrevet, og jeg får at vide, at der ikke var noget at gemme.| ja      | US14                                                                 |
 | --- |---| ---      | ---                                                                  |
 | --- |---| ---      | ---                                                                  |
 | --- |---| ---      | ---                                                                  |

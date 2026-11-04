@@ -58,7 +58,10 @@ public class UserInterface {
             }
         }
         try {
-            controller.saveMoviesIfChanged();
+            boolean wasSaved = controller.saveMoviesIfChanged();
+            if(!wasSaved){
+                System.out.println("Nothing to save. ");
+            }
         } catch (FileNotFoundException a) {
             System.out.println("Could not save movies: " + a.getMessage());
         }
