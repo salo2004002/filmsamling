@@ -1,6 +1,7 @@
 package ui;
 import domainmodel.Movie;
 import domainmodel.Controller;
+import domainmodel.SortField;
 
 import java.io.FileNotFoundException;
 import java.time.DateTimeException;
@@ -134,13 +135,15 @@ public class UserInterface {
     }
 
     private void showAllMovies() {
-        ArrayList<Movie> list = controller.getMovies();
+        ArrayList<Movie> list = controller.getMoviesSortedBy(SortField.TITLE);
         if (list.isEmpty()) {
             System.out.println("\nYou don't have any movies in the list\n");
         } else {
             for (Movie movie : list) {
-                System.out.println(movie.toString());
+                System.out.println("-".repeat(30));
+                System.out.println(movie);
             }
+            System.out.println("-".repeat(30));
         }
     }
 
